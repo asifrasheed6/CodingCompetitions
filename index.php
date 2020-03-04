@@ -31,7 +31,7 @@
             if($row['Admin'])
                 header('location: postmaster.php');
             else
-                header('location: profile.php');
+                header('location: home.php');
             exit;
         }
     }
@@ -43,7 +43,27 @@
             Else register the user and sent verification email.
          */
         if($_POST['enter']=='login'){
-            
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $hash = md5($password);
+            $query = mysqli_query($database, "SELECT * FROM `USER` WHERE `USERNAME` LIKE '$username' AND `PASSWORD` LIKE '$password'");
+
+            if(mysqli_num_rows($query)==0){
+                $password_err = "invalid username or password!";
+            }else{
+                $row = mysqli_fetch_array($query);
+                $_SESSION['loggedin'] = true;
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['last_activity'] = time();
+                /*
+                    Always identify the user using the user id number because the username can
+                        change but the user id remains the same.
+                 */
+                if($row['Admin'])
+                    header('location: postmaster.php');
+                else
+                    header('location: home.php');
+            }
         }
         else{
             
