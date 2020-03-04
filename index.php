@@ -6,7 +6,9 @@
                 website: https://github.com/asifrasheed6
         Rights Reserved to the Authors
      */
-    include 'config.php'; // DBMS Connection
+    include 'config.php'; // DBMS Connection -- not the most fan fav way of setting up PHP
+    //                                  because it is not safe, if we open config.php, we
+    //                                  can see the database username and password.
     
     $username_err = "";
     $password_err = "";
