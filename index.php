@@ -6,7 +6,7 @@
                 website: https://github.com/asifrasheed6
         Rights Reserved to the Authors
      */
-    include 'config.php'; // DBMS Connection -- not the most fan fav way of setting up PHP
+    include 'config.php'; // DBMS Connection -- not the most fan fav way of setting up SQL Connection
     //                                  because it is not safe, if we open config.php, we
     //                                  can see the database username and password.
     
@@ -31,9 +31,9 @@
             $row = mysqli_fetch_array(mysqli_query($database,'SELECT * FROM `USER` WHERE `ID` = $id'));
             // If the user is admin, redirect to admin panel
             if($row['Admin'])
-                header('location: postmaster.php');
+                header('location: /postoffice/');
             else
-                header('location: home.php');
+                header('location: /home/');
             exit;
         }
     }
@@ -51,7 +51,7 @@
             $query = mysqli_query($database, "SELECT * FROM `USER` WHERE `USERNAME` LIKE '$username' AND `PASSWORD` LIKE '$password'");
 
             if(mysqli_num_rows($query)==0){
-                $password_err = "invalid username or password!";
+                $password_err = "Invalid username or password!";
             }else{
                 $row = mysqli_fetch_array($query);
                 $_SESSION['loggedin'] = true;
@@ -62,9 +62,9 @@
                         change but the user id remains the same.
                  */
                 if($row['Admin'])
-                    header('location: postmaster.php');
+                    header('location: /postoffice/');
                 else
-                    header('location: home.php');
+                    header('location: /home/');
             }
         }
         else{
@@ -86,17 +86,17 @@
     LOG IN
   </div>
   <form id = "form-login" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-  <div class="login-signup-content">
+    <div class="login-signup-content">
     <div class="input-name">
       <h2>Username</h2>
     </div>
     <input type="text" name="username" value="<?php echo $username ?>" class="field-input" required/>
-    <div class="input-name input-margin"><?php echo '<span style="color:#FF0000;">'.$username_err.'</span>';?>
+    <div class="input-name input-margin">
       <h2>Password</h2>
 
     </div>
     <input type="password" name="password" value="" class="field-input" required/>
-    <div class="input-r"><?php echo '<span style="color:#FF0000;">'.$password_err.'</span>';?>
+    <div class="input-r">
 
 
       <div class="check-input">
@@ -108,6 +108,9 @@
     <button class="submit-btn" name="enter" value="login">
           Enter
         </button>
+<div class="input-name">
+ <?php echo '<span style="color:#FF0000;">'.$password_err.'</span>';?>
+</div>
     </form>
 
 
@@ -134,7 +137,7 @@
       <h2>Username</h2>
 
     </div>
-    <input type="text" name="username" value="" class="field-input" required/><?php echo '<span style="color:#FF0000;">'.$username_err.'</span>';?>
+    <input type="text" name="username" value="" class="field-input" maxlength='25' required/><?php echo '<span style="color:#FF0000;">'.$username_err.'</span>';?>
     <div class="input-name input-margin">
       <h2>E-Mail</h2>
     </div>
@@ -143,7 +146,7 @@
       <h2>Password</h2>
 
     </div>
-    <input type="text" name="password" value="" class="field-input" required/>
+    <input type="password" name="password" value="" class="field-input" maxlength='25' required/>
 
     <button class="submit-btn" type="submit" name="enter" value="register">
               Enter
