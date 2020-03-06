@@ -9,14 +9,17 @@
     include 'config.php'; // DBMS Connection -- not the most fan fav way of setting up SQL Connection
     //                                  because it is not safe, if we open config.php, we
     //                                  can see the database username and password.
-    
+    session_start();
     $username_err = "";
     $password_err = "";
     $email_err = "";
+    $username1 = "";
     $username = "";
+    $email = "";
+    $name = "";
     
     if(isset($_COOKIE['username'])){
-        $username = $_COOKIE['username']; // If the user chose to set remind me
+        $username1 = $_COOKIE['username']; // If the user chose to set remind me
     }
     
     // Checks if the user has already logged in or not
@@ -28,12 +31,12 @@
         }
         else{
             $id = $_SESSION['id'];
-            $row = mysqli_fetch_array(mysqli_query($database,'SELECT * FROM `USER` WHERE `ID` = $id'));
+            $row = mysqli_fetch_array(mysqli_query($database,"SELECT * FROM `USER` WHERE `id` = $id"));
             // If the user is admin, redirect to admin panel
-            if($row['Admin'])
-                header('location: /postoffice/');
+            if($row['admin'])
+                header('location: postoffice');
             else
-                header('location: /home/');
+                header('location: home');
             exit;
         }
     }
@@ -45,13 +48,13 @@
             Else register the user and sent verification email.
          */
         if($_POST['enter']=='login'){
-            $username = $_POST['username'];
+            $username1 = $_POST['username'];
             $password = $_POST['password'];
             $hash = md5($password);
-            $query = mysqli_query($database, "SELECT * FROM `USER` WHERE `USERNAME` LIKE '$username' AND `PASSWORD` LIKE '$password'");
+            $query = mysqli_query($database, "SELECT * FROM `USER` WHERE `USERNAME` = '$username1' AND `PASSWORD` = '$hash'");
 
             if(mysqli_num_rows($query)==0){
-                $password_err = "Invalid username or password!";
+                $password_err = 'Invalid username or password!';
             }else{
                 $row = mysqli_fetch_array($query);
                 $_SESSION['loggedin'] = true;
@@ -61,14 +64,52 @@
                     Always identify the user using the user id number because the username can
                         change but the user id remains the same.
                  */
-                if($row['Admin'])
-                    header('location: /postoffice/');
+
+                if($row['admin'])
+                    header('location: postoffice');
                 else
-                    header('location: /home/');
+                    header('location: home');
             }
         }
         else{
+            $username = $_POST['username'];
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $valid = true;
+            $id = mysqli_num_rows(mysqli_query($database, "SELECT * FROM `USER`"))+1;
             
+            if(mysqli_num_rows(mysqli_query($database, "SELECT * FROM `Members` WHERE `UserName` = '$username'"))>0){
+                $username_err = 'This username is taken!';
+                $valid = false;
+            }
+            
+            if(mysqli_num_rows(mysqli_query($database,"SELECT * FROM `USER` WHERE `email` = '$email'"))>0){
+                $email_err = 'This email is already in use!';
+                $valid = false;
+            }
+            
+            if($valid){
+                mysqli_query($database, "INSERT INTO `Members` (`UserName`) VALUES ('$username')");
+                $hash = md5($password);
+                mysqli_query($database, "INSERT INTO `USER` (`id`, `Name`, `username`,`password`,`email`) VALUES ($id, '$name', '$username', '$hash', '$email')");
+                $verify = md5($username);
+                mysqli_query($database, "INSERT INTO `Verify` (`id`, `hash`) VALUES ($id,'$verify')");
+                
+                /*
+                    Verification Email
+                 */
+                
+                $subject = $web_name.' Registration';
+                $message = 'Dear '.$name.','."\r\n\t".'Thank you for registering to '.$web_name.'.'."\r\n".'Please confirm you email at '.$web_url.'verify.php?ac='.$verify.'/ to activate your account.'."\r\n\n".'Thank You,'."\n".$web_name.' Team!';
+                $headers = 'From: '.$web_email.'' . "\r\n" .
+                'Reply-To: '.$web_email.'' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+
+                mail($email, $subject, $message, $headers);
+                
+                header("location: submit.php?email=$email&status=true");
+            }
         }
     }
 ?>
@@ -90,7 +131,7 @@
     <div class="input-name">
       <h2>Username</h2>
     </div>
-    <input type="text" name="username" value="<?php echo $username ?>" class="field-input" required/>
+    <input type="text" name="username" value="<?php echo $username1 ?>" class="field-input" required/>
     <div class="input-name input-margin">
       <h2>Password</h2>
 
@@ -132,16 +173,16 @@
       <h2>Name</h2>
 
     </div>
-    <input type="text" name="name" value="" class="field-input" required/>
+    <input type="text" name="name" value="<?php echo $name ?>" class="field-input" maxlength='29' required/>
     <div class="input-name input-margin">
       <h2>Username</h2>
 
     </div>
-    <input type="text" name="username" value="" class="field-input" maxlength='25' required/><?php echo '<span style="color:#FF0000;">'.$username_err.'</span>';?>
+    <input type="text" name="username" value="<?php echo $username ?>" class="field-input" maxlength='25' required/><?php echo '<span style="color:#FF0000;">'.$username_err.'</span>';?>
     <div class="input-name input-margin">
       <h2>E-Mail</h2>
     </div>
-    <input type="text" name="email" value="" class="field-input" required/><?php echo '<span style="color:#FF0000;">'.$email_err.'</span>';?>
+    <input type="email" name="email" value="<?php echo $email ?>" class="field-input" required/><?php echo '<span style="color:#FF0000;">'.$email_err.'</span>';?>
     <div class="input-name input-margin">
       <h2>Password</h2>
 
