@@ -63,7 +63,7 @@ body{font-family: Roboto;}blockquote{border-color: #4ea2e3;}.display-1{font-fami
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
                     <a class="nav-link link text-primary display-7" href="#">
                         MY TEAM</a>
-                </li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">PROBLEM STATEMENT</a></li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">SUBMISSION</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">COMPETITION</a></li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">SCOREBOARD</a></li>
                 <li class="nav-item">
                     <a class="nav-link link text-primary display-7" href="logout.php">
                         LOG OUT</a>
@@ -87,7 +87,7 @@ body{font-family: Roboto;}blockquote{border-color: #4ea2e3;}.display-1{font-fami
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
                     <a class="nav-link link text-primary display-7" href="#">
                         MY TEAM</a>
-                </li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">PROBLEM STATEMENT</a></li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">SUBMISSION</a></li>
+                </li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">COMPETITION</a></li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">SCOREBOARD</a></li>
                 <li class="nav-item">
                     <a class="nav-link link text-primary display-7" href="logout.php">
                         LOG OUT</a>
