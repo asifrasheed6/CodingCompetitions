@@ -96,18 +96,8 @@
                 $verify = md5($username);
                 mysqli_query($database, "INSERT INTO `Verify` (`id`, `hash`) VALUES ($id,'$verify')");
                 
-                /*
-                    Verification Email
-                 */
-                
-                $subject = $web_name.' Registration';
-                $message = 'Dear '.$name.','."\r\n\t".'Thank you for registering to '.$web_name.'.'."\r\n".'Please confirm you email at '.$web_url.'verify.php?ac='.$verify.'/ to activate your account.'."\r\n\n".'Thank You,'."\n".$web_name.' Team!';
-                $headers = 'From: '.$web_email.'' . "\r\n" .
-                'Reply-To: '.$web_email.'' . "\r\n" .
-                    'X-Mailer: PHP/' . phpversion();
-
-                mail($email, $subject, $message, $headers);
-                
+                // Verification Email
+                sentConfirmMail($email,$verify,$name);
                 header("location: submit.php?email=$email&status=true");
             }
         }
