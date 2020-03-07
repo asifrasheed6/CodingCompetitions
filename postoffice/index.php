@@ -19,7 +19,7 @@
         header('location: ../');
 ?>
 <head>
-  <title>Post Office - A Work in Progress</title>
+<title><?php echo $web_name; ?></title>
 </head>
 <body>
   <h1>POST OFFICE</h1>

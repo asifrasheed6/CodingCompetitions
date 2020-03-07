@@ -106,7 +106,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Log-in / Sign-up</title>
+  <title><?php echo $web_name ?> - Login or Signup</title>
   <link rel="stylesheet" href="./style.css">
 
 </head>
