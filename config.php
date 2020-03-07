@@ -2,7 +2,7 @@
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
-    $web_name = "BaseCode";
+    $web_name = "CrashCode"; // Change this at Mail Config seperately
     
     /*
             Please make sure to change the settings for PHP mailer
@@ -29,7 +29,7 @@
         $web_url = "http://localhost/competition/"; // YOUR WEBSITE URL (MAKE SURE IT ENDS WITH /
         $web_email = "nabhananazar@gmail.com";
         $email_secret = "123@NaZaR";
-        $web_name = "BaseCode"; // YOUR COMPETITION NAME GOES HERE
+        $web_name = "CrashCode"; // YOUR COMPETITION NAME GOES HERE
         
         // Load Composer's autoloader
         require 'vendor/autoload.php';
