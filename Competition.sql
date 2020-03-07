@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 05, 2020 at 10:45 AM
+-- Generation Time: Mar 07, 2020 at 03:39 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -33,6 +33,13 @@ CREATE TABLE `Members` (
   `UserName` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `Members`
+--
+
+INSERT INTO `Members` (`TeamName`, `UserName`) VALUES
+(NULL, 'asif');
+
 -- --------------------------------------------------------
 
 --
@@ -52,10 +59,29 @@ CREATE TABLE `Team` (
 
 CREATE TABLE `User` (
   `id` int(5) NOT NULL,
+  `Name` varchar(30) NOT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(5000) NOT NULL,
   `email` varchar(256) NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `User`
+--
+
+INSERT INTO `User` (`id`, `Name`, `username`, `password`, `email`, `admin`) VALUES
+(1, 'Asif Rasheed', 'asif', '5f4dcc3b5aa765d61d8327deb882cf99', 'asif@linuxmail.org', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Verify`
+--
+
+CREATE TABLE `Verify` (
+  `hash` varchar(5000) NOT NULL,
+  `id` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -83,6 +109,12 @@ ALTER TABLE `User`
   ADD KEY `USER_NAME_FK` (`username`);
 
 --
+-- Indexes for table `Verify`
+--
+ALTER TABLE `Verify`
+  ADD KEY `Verify` (`id`);
+
+--
 -- Constraints for dumped tables
 --
 
@@ -97,6 +129,12 @@ ALTER TABLE `Members`
 --
 ALTER TABLE `User`
   ADD CONSTRAINT `USER_NAME_FK` FOREIGN KEY (`username`) REFERENCES `Members` (`UserName`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `Verify`
+--
+ALTER TABLE `Verify`
+  ADD CONSTRAINT `Verify` FOREIGN KEY (`id`) REFERENCES `User` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
