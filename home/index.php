@@ -61,7 +61,7 @@ body{font-family: Roboto;}blockquote{border-color: #4ea2e3;}.display-1{font-fami
         
             
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
-                    <a class="nav-link link text-primary display-7" href="#">
+                    <a class="nav-link link text-primary display-7" href="team.php">
                         MY TEAM</a>
                 </li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">COMPETITION</a></li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">SCOREBOARD</a></li>
                 <li class="nav-item">
@@ -85,7 +85,7 @@ body{font-family: Roboto;}blockquote{border-color: #4ea2e3;}.display-1{font-fami
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
             
             <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item">
-                    <a class="nav-link link text-primary display-7" href="#">
+                    <a class="nav-link link text-primary display-7" href="team.php">
                         MY TEAM</a>
                 </li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">COMPETITION</a></li><li class="nav-item"><a class="nav-link link text-primary display-7" href="#">SCOREBOARD</a></li>
                 <li class="nav-item">
@@ -123,18 +123,18 @@ body{font-family: Roboto;}blockquote{border-color: #4ea2e3;}.display-1{font-fami
         ?>
                 <h3 class="mbr-fonts-style align-center display-5">YOUR TEAM, <?php echo $teamname ?> HAS ONLY 1 MEMBER</h3>
                 <div class="mbr-text align-center"></div>
-            <div class="mbr-section-btn align-center"><a class="btn btn-md btn-primary display-4" href="https://mobirise.co">INVITE MEMBERS</a></div>
+            <div class="mbr-section-btn align-center"><a class="btn btn-md btn-primary display-4" href="team.php">INVITE MEMBERS</a></div>
             <?php }else{ ?>
                 <h3 class="mbr-fonts-style align-center display-5"><?php echo $teamname ?> IS ALL SET FOR THE COMPETITION</h3>
                 <div class="mbr-text align-center"></div>
-                <div class="mbr-section-btn align-center"><a class="btn btn-md btn-primary display-4" href="https://mobirise.co">MANAGE YOUR TEAM</a></div>
+                <div class="mbr-section-btn align-center"><a class="btn btn-md btn-primary display-4" href="team.php">MANAGE YOUR TEAM</a></div>
                 <?php } ?>
         <?php } else { ?>
             <h3 class="mbr-fonts-style align-center display-5">LOOKS LIKE YOU DON'T HAVE A TEAM YET!</h3>
                          <div class="mbr-text align-center">
                              
                          </div>
-                         <div class="mbr-section-btn align-center"><a class="btn btn-md btn-primary display-4" href="#">JOIN OR CREATE A TEAM</a></div>
+                         <div class="mbr-section-btn align-center"><a class="btn btn-md btn-primary display-4" href="team.php">JOIN OR CREATE A TEAM</a></div>
             <?php } ?>
         </div>
     </div>
