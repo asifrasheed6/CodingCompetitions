@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 07, 2020 at 03:39 PM
+-- Generation Time: Mar 08, 2020 at 12:59 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -38,7 +38,8 @@ CREATE TABLE `Members` (
 --
 
 INSERT INTO `Members` (`TeamName`, `UserName`) VALUES
-(NULL, 'asif');
+(NULL, 'asif'),
+(NULL, 'test');
 
 -- --------------------------------------------------------
 
@@ -48,7 +49,19 @@ INSERT INTO `Members` (`TeamName`, `UserName`) VALUES
 
 CREATE TABLE `Team` (
   `Name` varchar(256) NOT NULL,
-  `MemberCount` int(11) NOT NULL
+  `MemberCount` int(11) NOT NULL,
+  `PUBLIC` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `TeamInvite`
+--
+
+CREATE TABLE `TeamInvite` (
+  `Link` varchar(5000) NOT NULL,
+  `TeamName` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -71,7 +84,8 @@ CREATE TABLE `User` (
 --
 
 INSERT INTO `User` (`id`, `Name`, `username`, `password`, `email`, `admin`) VALUES
-(1, 'Asif Rasheed', 'asif', '5f4dcc3b5aa765d61d8327deb882cf99', 'asif@linuxmail.org', 1);
+(1, 'Asif Rasheed', 'asif', '5f4dcc3b5aa765d61d8327deb882cf99', 'asif@linuxmail.org', 1),
+(2, 'Asif Rasheed', 'test', '5f4dcc3b5aa765d61d8327deb882cf99', 'asifrasheeeed@gmail.com', 0);
 
 -- --------------------------------------------------------
 
@@ -102,6 +116,12 @@ ALTER TABLE `Team`
   ADD PRIMARY KEY (`Name`);
 
 --
+-- Indexes for table `TeamInvite`
+--
+ALTER TABLE `TeamInvite`
+  ADD KEY `INVITE_FK` (`TeamName`);
+
+--
 -- Indexes for table `User`
 --
 ALTER TABLE `User`
@@ -123,6 +143,12 @@ ALTER TABLE `Verify`
 --
 ALTER TABLE `Members`
   ADD CONSTRAINT `MEMBER_FK` FOREIGN KEY (`TeamName`) REFERENCES `Team` (`Name`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `TeamInvite`
+--
+ALTER TABLE `TeamInvite`
+  ADD CONSTRAINT `INVITE_FK` FOREIGN KEY (`TeamName`) REFERENCES `Team` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `User`
