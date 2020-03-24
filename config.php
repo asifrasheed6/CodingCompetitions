@@ -27,7 +27,7 @@
     // PHP Mailer Set Up:
     function sentConfirmMail($to, $verify, $name){
         
-        $web_url = "http://localhost/competition/"; // YOUR WEBSITE URL (MAKE SURE IT ENDS WITH /
+        $web_url = "http://localhost/competition/"; // YOUR WEBSITE URL (MAKE SURE IT ENDS WITH /)
         $web_email = "nabhananazar@gmail.com";
         $email_secret = "123@NaZaR";
         $web_name = "CrashCode"; // YOUR COMPETITION NAME GOES HERE
