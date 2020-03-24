@@ -14,7 +14,7 @@
     }
     else header('location: ../');
 ?>
-<html amp >
+<html>
 <head>
   <!-- website Front End made with Mobirise Website Builder v4.12.2, https://mobirise.com -->
   <meta charset="UTF-8">
