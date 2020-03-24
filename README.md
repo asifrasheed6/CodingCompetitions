@@ -1,5 +1,6 @@
 # Installation
 - Download the repository as zip file and extract to your website directory
+- Create a new database on MySQL and import Competition.sql 
 - Edit config.php:
   - Change Website Name
   - Change User Timeout 
