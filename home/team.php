@@ -5,7 +5,7 @@
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']===true){
         $id = $_SESSION['id'];
         $query = mysqli_query($database, "SELECT * FROM `USER` WHERE `id` = $id");
-        if(mysqli_num_rows($query)==0 || time()-$_SESSION['last_activity']>=600){
+        if(mysqli_num_rows($query)==0 || time()-$_SESSION['last_activity']>=(60)*$timeout){
             session_unset();
             session_destroy();
             header('location: ../');
@@ -72,7 +72,7 @@ body{font-family: Roboto;}blockquote{border-color: #4ea2e3;}.display-1{font-fami
     <nav class="navbar navbar-dropdown navbar-expand-lg navbar-fixed-top">
       <div class="brand">
           
-    <p class="brand-name mbr-fonts-style mbr-bold display-5"><?php echo $web_name; ?></p>
+    <p class="brand-name mbr-fonts-style mbr-bold display-5"><a href="../home"><?php echo $web_name; ?></a>
       </div>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
             
@@ -98,7 +98,7 @@ body{font-family: Roboto;}blockquote{border-color: #4ea2e3;}.display-1{font-fami
 
   <!-- AMP plug -->
     
-
+<!-- IF THE USER ALREADY HAS A TEAM -->
 </section>
 
 <section class="engine"><a href="https://mobirise.info/o">free portfolio site templates</a></section><section class="info2 cid-rSCFVXG1Kn" id="info2-2">
@@ -213,94 +213,35 @@ body{font-family: Roboto;}blockquote{border-color: #4ea2e3;}.display-1{font-fami
 
         <div class="mbr-row mbr-justify-content-center">
             <div class="mbr-col-lg-10  mbr-col-md-12 " data-form-type="formoid">
-                <form class="mbr-form" method="post" target="_top" action-xhr="https://formoid.net/api/amp-form/push" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="uuld51674iHie/1Zd46fx5xrZhgYiaIf2Bte/QEC8cUpuCjFczcM9POcFA1q0tGnIE2s0WOIz8YO1AJVunank9gfL4U6WL/Fvy8PccUjK6bxvegsQNt7rkuoz+lCSsRn">
-                    <div class="mbr-row">
-                      <div submit-success="" class="mbr-col-sm-12 mbr-col-md-12">
-                        <template data-form-alert="" type="amp-mustache">Subscription successful!</template>
-                      </div>
-                      <div submit-error="" class="mbr-col-sm-12 mbr-col-md-12">
-                        <template data-form-alert="" type="amp-mustache">Failed! {{error}}</template>
-                      </div>
-                    </div>
-                    <div class="mbr-row">
-                        
-                        <div class="field mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-3" data-for="form[data][1][1]">
-                            <input type="hidden" name="form[data][0][0]" value="Last Name" id="form[data][1][0]-contacts1-5" data-form-field="">
-                            <input class="field-input" type="text" name="form[data][0][1]" data-form-field="Last Name" placeholder="Last Name" required="" id="form[data][1][1]-contacts1-5">
-                        </div>
-                        
-                        <div class="mbr-section-btn align-center field mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-3"><button type="submit" class="btn btn-primary btn-form display-4">Subscribe</button></div>
-                    </div>
+                <form class="mbr-form">
+                            <input class="field-input" type="text" name="form[data][0][1]" data-form-field="Last Name" placeholder="Last Name" required="" value="THE TEAM INVITATION LINK GOES HERE!" style="text-align: center">
                 </form>
             </div>
         </div>
     </div>
 </section>
 
+<!-- IF THE USER DOES NOT HAVE A TEAM -->
 <section class="content2 mbr-section article cid-rSCYuldn6z" id="content2-8">
-    
-     
-
+</br></br></br>
     <div class="container">
         <div class="mbr-row mbr-justify-content-center">
             <div class="mbr-col-sm-12 mbr-col-md-10 mbr-col-lg-8">
                 <h3 class="mbr-fonts-style mbr-section-title mbr-light display-2">
                     Looks like you don't have a team yet!</h3>
-                <p class="mbr-text mbr-fonts-style display-7"><strong>Create a new team or Join an existing team</strong></p>
             </div>
         </div>
-    </div>
-</section>
-
-<section class="mbr-section content5 cid-rSCYcFIaT6" id="content5-7">
-
-    
-
-    <div class="mbr-container">
-        <div class="mbr-section-btn align-center"><a class="btn btn-success-outline display-4" href="https://mobirise.co">CREATE A TEAM</a>
-            <a class="btn btn-primary-outline display-4" href="https://mobirise.co">JOIN A TEAM</a></div>
-    </div>
-</section>
-
-<section class="contact1 cid-rSCY2gRoeM" id="contacts1-6">
-
-    
-
-    <div class="container">
-        <h2 class="align-center mbr-fonts-style mbr-light display-2">
-            CREATE A NEW TEAM</h2>
-        <h3 class="mbr-section-subtitle align-center mbr-fonts-style mbr-light display-7">LOOKS LIKE THE TEAM NAME IS ALREADY IN USE !</h3>
-
-        <div class="mbr-row mbr-justify-content-center">
-            <div class="mbr-col-lg-10  mbr-col-md-12 " data-form-type="formoid">
-                <form class="mbr-form" method="post" target="_top" action-xhr="https://formoid.net/api/amp-form/push" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="HNnq4DcU0CkL57tspeoRFaM2veFGeBXgw+gZU3whL8XkpfqPM9TOcq8BR4HugO/BonYJYzunJGM39PQxbvBJdUHF7E5LYq7Pl8+F35aWteYNkj+XIWhoAMo+F9wxHIvu">
-                    <div class="mbr-row">
-                      <div submit-success="" class="mbr-col-sm-12 mbr-col-md-12">
-                        <template data-form-alert="" type="amp-mustache">Subscription successful!</template>
-                      </div>
-                      <div submit-error="" class="mbr-col-sm-12 mbr-col-md-12">
-                        <template data-form-alert="" type="amp-mustache">Failed! {{error}}</template>
-                      </div>
-                    </div>
-                    <div class="mbr-row">
-                        <div class="field mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-3" data-for="form[data][0][1]">
-                            <input type="hidden" name="form[data][0][0]" value="Name" id="form[data][0][0]-contacts1-6" data-form-field="">
-                            <input class="field-input" type="text" name="form[data][0][1]" data-form-field="Name" placeholder="Name" required="" id="form[data][0][1]-contacts1-6">
-                        </div>
-                        
-                        
-                        <div class="mbr-section-btn align-center field mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-3">
-                            <button type="submit" class="btn btn-primary btn-form display-4">Subscribe</button>
-                        </div>
-                    </div>
-                </form>
+        <div class="mbr-section-btn align-center">
+            <a class="btn btn-primary-outline display-4" href="https://mobirise.co">JOIN A TEAM</a></div></br><center>OR</center></br>
+    <center><form class="mbr-form">
+                <input class="field-input" type="text" name="team_name" placeholder="Team Name" style="text-align: center" required></br></br>
+            <div class="mbr-section-btn align-center field mbr-col-sm-12 mbr-col-md-12 mbr-col-lg-3">
+            <button type="submit" class="btn btn-success-outline display-4">CREATE A TEAM</button>
             </div>
         </div>
+    </form></center>
     </div>
 </section>
-
-
-  
-  
 </body>
 </html>
+

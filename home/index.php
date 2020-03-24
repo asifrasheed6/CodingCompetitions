@@ -5,7 +5,7 @@
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true){
         $id = $_SESSION['id'];
         $query = mysqli_query($database, "SELECT * FROM `USER` WHERE `id` = $id");
-        if(mysqli_num_rows($query)==0 || time()-$_SESSION['last_activity']>=600){
+        if(mysqli_num_rows($query)==0 || time()-$_SESSION['last_activity']>=(60)*$timeout){
             session_unset();
             session_destroy();
             header('location: ../');
@@ -80,7 +80,7 @@ body{font-family: Roboto;}blockquote{border-color: #4ea2e3;}.display-1{font-fami
     <nav class="navbar navbar-dropdown navbar-expand-lg navbar-fixed-top">
       <div class="brand">
           
-    <p class="brand-name mbr-fonts-style mbr-bold display-5"><?php echo $web_name; ?>
+    <p class="brand-name mbr-fonts-style mbr-bold display-5"><a href="../home"><?php echo $web_name; ?></a>
       </div>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
             

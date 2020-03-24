@@ -24,7 +24,7 @@
     
     // Checks if the user has already logged in or not
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true){
-        if((time())-$_SESSION['last_activity']>=600){
+        if((time())-$_SESSION['last_activity']>=(60)*$timeout){
             session_unset();
             session_destroy();
             exit;

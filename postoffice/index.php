@@ -5,7 +5,7 @@
     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']===true){
         $id = $_SESSION['id'];
         $query = mysqli_query($database, "SELECT * FROM `USER` WHERE `id` = $id");
-        if(mysqli_num_rows($query)==0 || time()-$_SESSION['last_activity']>=600){
+        if(mysqli_num_rows($query)==0 || time()-$_SESSION['last_activity']>=(60)*$timeout){
             session_unset();
             session_destroy();
             header('location: ../');

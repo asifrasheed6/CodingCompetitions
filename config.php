@@ -3,6 +3,7 @@
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
     $web_name = "CrashCode"; // Change this at Mail Config seperately
+    $timeout = 10; // Maximum inactive time in minutes
     
     /*
             Please make sure to change the settings for PHP mailer
