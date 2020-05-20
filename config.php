@@ -28,8 +28,8 @@
     function sentConfirmMail($to, $verify, $name){
         
         $web_url = "http://localhost/competition/"; // YOUR WEBSITE URL (MAKE SURE IT ENDS WITH /)
-        $web_email = "nabhananazar@gmail.com";
-        $email_secret = "123@NaZaR";
+        $web_email = "email goes here";
+        $email_secret = "password goes here";
         $web_name = "CrashCode"; // YOUR COMPETITION NAME GOES HERE
         
         // Load Composer's autoloader
